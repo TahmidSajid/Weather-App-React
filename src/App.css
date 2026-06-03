@@ -1,0 +1,194 @@
+body {
+  background-color: #f0f4f8;
+}
+.weather-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2.5rem 1rem;
+  background-color: #f0f4f8;
+}
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 0.25rem;
+}
+.app-subtitle {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+.search-card {
+  background: #fff;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 1.25rem;
+}
+.search-input {
+  border-radius: 10px 0 0 10px;
+  border: 1.5px solid #dee2e6;
+  font-size: 0.95rem;
+  padding: 0.65rem 1rem;
+}
+.search-input:focus {
+  border-color: #4361ee;
+  box-shadow: none;
+  outline: none;
+}
+.search-btn {
+  border-radius: 0 10px 10px 0;
+  background-color: #4361ee;
+  border-color: #4361ee;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.25rem;
+}
+.search-btn:hover {
+  background-color: #3451d1;
+  border-color: #3451d1;
+}
+.search-btn:disabled {
+  background-color: #a0aec0;
+  border-color: #a0aec0;
+}
+.weather-card {
+  background: #fff;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 1.25rem;
+}
+.city-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0;
+}
+.country-badge {
+  font-size: 0.8rem;
+  background-color: #e8ecff;
+  color: #4361ee;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-weight: 500;
+}
+.weather-icon {
+  width: 72px;
+  height: 72px;
+}
+.temperature {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1;
+}
+.temp-unit {
+  font-size: 1.5rem;
+  color: #6c757d;
+  font-weight: 400;
+}
+.weather-desc {
+  font-size: 1rem;
+  color: #6c757d;
+  text-transform: capitalize;
+  margin-top: 0.25rem;
+}
+.stat-card {
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid #e8ecff;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+.stat-icon {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  color: #4361ee;
+}
+.error-card {
+  background: #fff5f5;
+  border: 1.5px solid #fed7d7;
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.error-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.error-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #c53030;
+  margin-bottom: 0.25rem;
+}
+.error-msg {
+  font-size: 0.875rem;
+  color: #9b2c2c;
+  margin-bottom: 0;
+}
+.loading-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.spinner-border {
+  color: #4361ee;
+}
+.loading-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 1rem;
+}
+.divider {
+  border-top: 1px solid #f0f0f0;
+  margin: 1.25rem 0;
+}
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+.tab-btn {
+  font-size: 0.8rem;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #dee2e6;
+  background: transparent;
+  color: #6c757d;
+  cursor: pointer;
+}
+.tab-btn.active {
+  background: #4361ee;
+  border-color: #4361ee;
+  color: #fff;
+}
