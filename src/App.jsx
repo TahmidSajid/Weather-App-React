@@ -5,6 +5,7 @@ import api from "./api/axios";
 import { handleError } from "./api/handler";
 import WeatherCard from "./components/WeatherCard";
 import LoadingCard from "./components/LoadingCard";
+import ErrorCard from "./components/ErrorCard";
 
 function App() {
   const [country, setCountry] = useState(null);
@@ -12,6 +13,7 @@ function App() {
   const [locationName, setLocationName] = useState(null);
   const [countryCode, setContryCode] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const search = async () => {
 
@@ -48,6 +50,8 @@ function App() {
       return weather.data;
     } catch (error) {
       handleError(error, true);
+      setError(true);
+      setLoading(false);
     }
   }
 
@@ -77,6 +81,8 @@ function App() {
 
     } catch (error) {
       handleError(error, true);
+      setError(true);
+      setLoading(false);
     }
   };
 
@@ -90,6 +96,7 @@ function App() {
         <SearchCard setCountry={setCountry} search={search} />
         {weather && <WeatherCard weather={weather} countryCode={countryCode} locationName={locationName}/>}
         {loading && <LoadingCard country={country}/>}
+        {error && <ErrorCard/>}
       </div>
     </>
   );
