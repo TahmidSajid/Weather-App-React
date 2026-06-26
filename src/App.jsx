@@ -4,24 +4,25 @@ import SearchCard from "./components/SearchCard";
 import api from "./api/axios";
 import { handleError } from "./api/handler";
 import WeatherCard from "./components/WeatherCard";
+import LoadingCard from "./components/LoadingCard";
 
 function App() {
   const [country, setCountry] = useState(null);
   const [weather, setWeather] = useState(null);
   const [locationName, setLocationName] = useState(null);
   const [countryCode, setContryCode] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const search = async () => {
+
+    setWeather(null);
+
     let [latitude, longitude, timezone, locationName, countryCode] = await getLocation();
     let weather = await getWeather(latitude, longitude, timezone);
 
     setWeather(weather);
     setLocationName(locationName);
     setContryCode(countryCode);
-
-
-
-    console.log(latitude);
 
   };
 
@@ -36,10 +37,14 @@ function App() {
             longitude: longitude,
             hourly: "temperature_2m",
             current: ["temperature_2m", "relative_humidity_2m", "wind_speed_10m", "weather_code", "apparent_temperature"],
+            models: ["ecmwf_ifs025"],
             timezone: timezone,
           },
         },
       );
+
+      setLoading(false);
+
       return weather.data;
     } catch (error) {
       handleError(error, true);
@@ -48,6 +53,7 @@ function App() {
 
   const getLocation = async () => {
 
+    setLoading(true);
     try {
       const location = await api.get(
         `https://geocoding-api.open-meteo.com/v1/search`,
@@ -60,7 +66,7 @@ function App() {
           },
         },
       );
-      console.log(location);
+
       let latitude     = location.data.results[0].latitude;
       let longitude    = location.data.results[0].longitude;
       let timezone     = location.data.results[0].timezone;
@@ -83,6 +89,7 @@ function App() {
         </p>
         <SearchCard setCountry={setCountry} search={search} />
         {weather && <WeatherCard weather={weather} countryCode={countryCode} locationName={locationName}/>}
+        {loading && <LoadingCard country={country}/>}
       </div>
     </>
   );

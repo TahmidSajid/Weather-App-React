@@ -2,8 +2,7 @@ import React from "react";
 import weatherCodes from "../weatherCode";
 
 const WeatherCard = ({weather,countryCode,locationName}) => {
-    console.log(weather);
-    console.log(weatherCodes[weather.current.weather_code].description)
+
   return (
     <>
       <div className="weather-card">
@@ -14,11 +13,7 @@ const WeatherCard = ({weather,countryCode,locationName}) => {
             </p>
             <p className="weather-desc">{weatherCodes[weather.current.weather_code].description}</p>
           </div>
-          <img
-            className="weather-icon"
-            src="https://openweathermap.org/img/wn/04d@2x.png"
-            alt="weather icon"
-          />
+          <span style={{ fontSize:"50px" }}>{weatherCodes[weather.current.weather_code].icon}</span>
         </div>
 
         <div className="d-flex align-items-flex-end mb-3">
