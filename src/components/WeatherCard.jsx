@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import weatherCodes from "../weatherCode";
 
 const WeatherCard = ({weather,countryCode,locationName}) => {
+
+  const [farenheit, setFarenheit] = useState(false);
+
+  const toFarenheit = (value) => {
+    let f_value = (value * (9/5) ) + 32
+    return f_value.toFixed(2);
+  }
+
 
   return (
     <>
@@ -17,13 +25,19 @@ const WeatherCard = ({weather,countryCode,locationName}) => {
         </div>
 
         <div className="d-flex align-items-flex-end mb-3">
-          <span className="temperature">{weather.current.temperature_2m}</span>
-          <span className="temp-unit ms-1">{weather.current_units.temperature_2m}</span>
+          <span className="temperature">
+            {farenheit == true && toFarenheit(weather.current.temperature_2m)}
+            {farenheit == false && weather.current.temperature_2m}
+          </span>
+          <span className="temp-unit ms-1">
+            {farenheit == true && "F"}
+            {farenheit == false && weather.current_units.temperature_2m}
+          </span>
         </div>
 
         <div className="tabs">
-          <button className="tab-btn active">°C</button>
-          <button className="tab-btn">°F</button>
+          <button className={farenheit === false ? "tab-btn active": "tab-btn"} onClick={() => {setFarenheit(false)}}>°C</button>
+          <button className={farenheit === true ? "tab-btn active": "tab-btn"} onClick={() => {setFarenheit(true)}}>°F</button>
         </div>
 
         <div className="divider"></div>
@@ -47,7 +61,10 @@ const WeatherCard = ({weather,countryCode,locationName}) => {
             <div className="stat-card">
               <div className="stat-icon">👁️</div>
               <div className="stat-label">Feels like</div>
-              <div className="stat-value">{weather.current.apparent_temperature}{weather.current_units.apparent_temperature}</div>
+              <div className="stat-value">
+                {farenheit == true && toFarenheit(weather.current.apparent_temperature)+"F"}
+                {farenheit == false && weather.current.apparent_temperature+weather.current_units.apparent_temperature}
+              </div>
             </div>
           </div>
         </div>
