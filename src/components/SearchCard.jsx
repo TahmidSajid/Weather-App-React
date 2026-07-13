@@ -1,6 +1,7 @@
 import React from "react";
 
 const SearchCard = ({setCountry, search}) => {
+
   return (
     <>
       <div className={"search-card"}>

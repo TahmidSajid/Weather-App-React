@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import SearchCard from "./components/SearchCard";
 import api from "./api/axios";
@@ -6,9 +6,10 @@ import { handleError } from "./api/handler";
 import WeatherCard from "./components/WeatherCard";
 import LoadingCard from "./components/LoadingCard";
 import ErrorCard from "./components/ErrorCard";
+import useDebounced from "./hooks/useDebounced";
 
 function App() {
-  const [country, setCountry] = useState(null);
+  const [country, setCountry] = useState('');
   const [weather, setWeather] = useState(null);
   const [locationName, setLocationName] = useState(null);
   const [countryCode, setContryCode] = useState(null);
@@ -27,6 +28,10 @@ function App() {
     setContryCode(countryCode);
 
   };
+
+  const debouncedInput = useDebounced(country,5000);
+
+  console.log(debouncedInput);
 
 
   const getWeather = async (latitude, longitude, timezone) => {
@@ -85,6 +90,7 @@ function App() {
       setLoading(false);
     }
   };
+
 
   return (
     <>
