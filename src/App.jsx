@@ -31,9 +31,6 @@ function App() {
 
   const debouncedInput = useDebounced(country,5000);
 
-  console.log(debouncedInput);
-
-
   const getWeather = async (latitude, longitude, timezone) => {
     try {
       const weather = await api.get(
@@ -91,6 +88,38 @@ function App() {
     }
   };
 
+
+  useEffect(()=>{
+
+    if(debouncedInput.trim().length < 3){
+      return;
+    }
+
+    const fetchSuggestion = async () => {
+      try {
+        const suggestion = await api.get(
+          `https://geocoding-api.open-meteo.com/v1/search`,
+          {
+            params: {
+              name: debouncedInput,
+              count: 5,
+              language: "en",
+              format: "json",
+            },
+          },
+        );
+
+        console.log(suggestion);
+
+      } catch (error) {
+
+      }
+    }
+
+    fetchSuggestion();
+
+    
+  },[debouncedInput])
 
   return (
     <>
