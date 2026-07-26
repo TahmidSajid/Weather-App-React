@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const SearchCard = ({ setCountry, search }) => {
+const SearchCard = ({ setCountry, search, suggestion }) => {
+  
+  useEffect(() => {
+    if(suggestion != null && suggestion.data.hasOwnProperty("results")){
+      console.log("valid");
+    }
+  }, [suggestion]);
   return (
     <>
       <div className={"search-card"}>
@@ -28,19 +34,22 @@ const SearchCard = ({ setCountry, search }) => {
         >
           Please enter a city name.
         </div>
-        <ul className="suggestions-list" id="suggestionsList" style={{ display:"block" }}>
-          <li className="suggestion-item">
-            <span className="suggestion-city">Dhaka</span>
-            <span className="suggestion-country">Dhaka Division, Bangladesh</span>
-          </li>
-          <li className="suggestion-item">
-            <span className="suggestion-city">Dhamār</span>
-            <span className="suggestion-country">Dhamar Governorate, Yemen</span>
-          </li>
-          <li className="suggestion-item">
-            <span className="suggestion-city">Dharamshala</span>
-            <span className="suggestion-country">Himachal Pradesh, India</span>
-          </li>
+        <ul
+          className="suggestions-list"
+          id="suggestionsList"
+          style={{ display: "block" }}
+        >
+          {suggestion != null &&
+            suggestion.data.results.map((suggestion,index) => {
+              return (
+                <li className="suggestion-item" key={index}>
+                  <span className="suggestion-city">{suggestion.name}</span>
+                  <span className="suggestion-country">
+                    {suggestion.admin2}, {suggestion.country}
+                  </span>
+                </li>
+              );
+            })}
         </ul>
       </div>
     </>

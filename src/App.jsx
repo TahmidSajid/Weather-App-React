@@ -15,6 +15,7 @@ function App() {
   const [countryCode, setContryCode] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [suggestion, setSuggestion] = useState(null);
 
   const search = async () => {
 
@@ -29,7 +30,7 @@ function App() {
 
   };
 
-  const debouncedInput = useDebounced(country,5000);
+  const debouncedInput = useDebounced(country,400);
 
   const getWeather = async (latitude, longitude, timezone) => {
     try {
@@ -110,9 +111,10 @@ function App() {
         );
 
         console.log(suggestion);
+        setSuggestion(suggestion);
 
       } catch (error) {
-
+        handleError(error, true);
       }
     }
 
@@ -128,7 +130,7 @@ function App() {
         <p className={"app-subtitle"}>
           Search any city to get current conditions
         </p>
-        <SearchCard setCountry={setCountry} search={search} />
+        <SearchCard setCountry={setCountry} search={search} suggestion={suggestion}/>
         {weather && <WeatherCard weather={weather} countryCode={countryCode} locationName={locationName}/>}
         {loading && <LoadingCard country={country}/>}
         {error && <ErrorCard/>}
