@@ -130,7 +130,7 @@ function App() {
         <p className={"app-subtitle"}>
           Search any city to get current conditions
         </p>
-        <SearchCard setCountry={setCountry} search={search} suggestion={suggestion}/>
+        <SearchCard setCountry={setCountry} search={search} suggestion={suggestion} setLocationName={setLocationName} setContryCode={setContryCode} getWeather={getWeather} setWeather={setWeather} setLoading={setLoading}/>
         {weather && <WeatherCard weather={weather} countryCode={countryCode} locationName={locationName}/>}
         {loading && <LoadingCard country={country}/>}
         {error && <ErrorCard/>}
