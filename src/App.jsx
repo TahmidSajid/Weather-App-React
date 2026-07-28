@@ -103,7 +103,7 @@ function App() {
           {
             params: {
               name: debouncedInput,
-              count: 5,
+              count: 8,
               language: "en",
               format: "json",
             },
